@@ -29,7 +29,7 @@ public class ReqresApiTests extends TestBase {
                         .spec(successful200ResponseSpec)
                         .extract().as(RegistrationResponseModel.class));
 
-        step("Проверяем ответ", () ->
+        step("Проверяем, что в ответе получен токен", () ->
                 assertThat(response.getToken()).isNotEmpty());
     }
 
@@ -48,7 +48,7 @@ public class ReqresApiTests extends TestBase {
                         .spec(error400ResponseSpec)
                         .extract().as(RegistrationErrorModel.class));
 
-        step("Проверяем ответ", () ->
+        step("Проверяем ошибку, полученную в ответе", () ->
                 assertThat(response.getError()).isEqualTo("Missing password"));
     }
 
@@ -67,7 +67,7 @@ public class ReqresApiTests extends TestBase {
                         .spec(error400ResponseSpec)
                         .extract().as(RegistrationErrorModel.class));
 
-        step("Проверяем ответ", () ->
+        step("Проверяем ошибку, полученную в ответе", () ->
                 assertThat(response.getError()).isEqualTo("Missing email or username"));
     }
 
@@ -86,7 +86,7 @@ public class ReqresApiTests extends TestBase {
                         .then()
                         .spec(error400ResponseSpec)
                         .extract().as(RegistrationErrorModel.class));
-        step("Проверяем ответ", () ->
+        step("Проверяем ошибку, полученную в ответе", () ->
                 assertThat(response.getError()).isEqualTo("Note: Only defined users succeed registration"));
     }
 
@@ -102,7 +102,7 @@ public class ReqresApiTests extends TestBase {
                         .spec(successful200ResponseSpec)
                         .extract().as(GetUserResponseModel.class));
 
-        step("Проверяем ответ", () ->
+        step("Проверяем id пользователя в ответе", () ->
                 assertThat(response.getData().getId()).isEqualTo("2"));
     }
 
